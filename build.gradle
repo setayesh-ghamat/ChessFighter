@@ -1,0 +1,106 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.8.12'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+    id 'jacoco'
+    id 'checkstyle'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources']
+            includes = ['**/*']
+        }
+    }
+}
+
+ext {
+    junitVersion = '5.9.2'
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'main'
+    mainClass = 'Main'
+}
+
+javafx {
+    version = '21-ea+24'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging{
+        events "passed", "skipped", "failed"
+    }
+
+    finalizedBy 'jacocoTestReport'
+
+}
+
+jacocoTestReport{
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+}
+
+jacocoTestCoverageVerification{
+    violationRules{
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'app'
+    }
+}
+
+jlinkZip {
+    group = 'distribution'
+}
+
+checkstyle{
+    toolVersion = '8.45'
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain{
+    exclude '**/module-info.java'
+}
