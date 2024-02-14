@@ -30,6 +30,7 @@ Welcome to the CHESS FIGHTER project, a digital interpretation of the classic st
 - The game records your score after each match.
 
 **Contribution Guidelines**
+
 We welcome contributions to the CHESS FIGHTER project. Please follow these steps:
 - Fork the repository.
 - Make your changes and test them.
