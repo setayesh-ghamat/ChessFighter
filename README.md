@@ -36,7 +36,8 @@ We welcome contributions to the CHESS FIGHTER project. Please follow these steps
 - Make your changes and test them.
 - Submit a pull request with a clear description of your changes.
 
-**License**      
+**License**     
+
 This project is developed by students of Epitech Strasbourg and is available for non-commercial use.
 
 **Contact**
