@@ -41,12 +41,14 @@ We welcome contributions to the CHESS FIGHTER project. Please follow these steps
 This project is developed by students of Epitech Strasbourg and is available for non-commercial use.
 
 **Contact**
+
 For any queries or collaboration:
 - setayesh.ghamat@epitech.eu
 - maxime.sarrazin@epitech.eu
 - massoud.shams@epitech.eu
 
 **Acknowledgements**
+
 Special thanks to Dmitry Yakovlev and Tristan Hourtoulle for their guidance and support.
 
 
